@@ -52,22 +52,26 @@ def create_chore(type):
     pass
 
 def add_transaction(fname,transaction_amnt,chore_type):
-    req = db.user.find({'fname':fname}).sort('chore_date', -1)
-    last_name = str(req[0]['lname'])
-    first_name = str(req[0]['fname'])
-    account = int(req[0]['account'])
-    start_balance = float(req[0]['end_balance'])
-    start_savings = float(req[0]['end_savings'])
-    add_amnt = round(transaction_amnt/2, 2)
-    end_savings = start_savings + add_amnt
-    end_balance = start_balance + add_amnt
-    now = datetime.datetime.now()
-    data={'fname':first_name ,'lname':last_name, 'account':account, 'start_balance':start_balance, 'start_savings':start_savings, 
-    'end_balance':end_balance, 'end_savings':end_savings, 'transaction_type':'credit','chore':chore_type, 'chore_date':now}
-    db.user.insert(data)
+    results = db.user.find({'fname':fname}).limit(1).sort('chore_date', -1)
+    data = None
+    doc_id = None
+    for result in results:
+        last_name = result['lname']
+        first_name = result['fname']
+        account = result['account']
+        start_balance = result['end_balance']
+        start_savings = result['end_savings']
+        add_amnt = round(transaction_amnt/2, 2)
+        end_savings = start_savings + add_amnt
+        end_balance = start_balance + add_amnt
+        now = datetime.datetime.now()
+        data= {'fname':first_name ,'lname':last_name, 'account':account, 'start_balance':start_balance, 'start_savings':start_savings,
+        'amount':add_amnt, 'end_balance':end_balance, 'end_savings':end_savings, 'transaction_type':'credit','chore':chore_type, 'chore_date':now}
+        doc_id = db.user.insert(data)
+    return doc_id
 
 def return_balance(fname):
-    req = db.user.find({'lname':fname}).sort('chore_date', -1)
+    req = db.user.find({'lname':fname})limit(1).sort('chore_date', -1)
     bal_savings = None
     bal_balance = None
     for r in req:
@@ -76,14 +80,11 @@ def return_balance(fname):
     return {'credit' : bal_balance, 'savings': bal_savings}
 
 
-
-
 fnames = ['Etienne','Angel','Pullova','Etienne','Pullova','Angel','Angel','Etienne','Pullova','Pullova','Etienne','Angel','Angel']
 trans_amnts = [61.49, 73.76, 20.76, 70.1, 30.29, 60.2, 63.75, 57.69, 88.34, 36.88, 15.02, 30.24, 71.84]
 chr_type = ['vaccuuming','trash','cleaning','vaccuuming','trash','cleaning','vaccuuming','trash','cleaning','lawn moaning']
 
-print return_balance('Rivera')
-
+print add_transaction('Etienne',5.00,'trash')
 
     #db.user.insert({})
 # now = datetime.datetime.now()
