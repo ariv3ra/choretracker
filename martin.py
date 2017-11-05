@@ -68,7 +68,8 @@ def add_transaction(fname,transaction_amnt,chore_type):
         data= {'fname':first_name ,'lname':last_name, 'account':account, 'start_balance':start_balance, 'start_savings':start_savings,
         'amount':add_amnt, 'end_balance':end_balance, 'end_savings':end_savings, 'transaction_type':'credit','chore':chore_type, 'chore_date':now}
         doc_id = db.user.insert(data)
-    return doc_id
+        data['_id'] = doc_id
+    return data
 
 def return_balance(fname):
     req = db.user.find({'lname':fname})limit(1).sort('chore_date', -1)
