@@ -1,9 +1,18 @@
-import datetime, json, pymongo, requests
+import datetime, json, pymongo, requests, os, sys
 
-client = pymongo.MongoClient('mongodb://uri')
-db = client.choretracker
-# db.test.insert(doc)
 
+try:
+    pathname = os.path.dirname(sys.argv[0])
+    config_file = os.path.abspath(pathname)+'/config.json'
+    with open(config_file) as data_file:
+        data = json.load(data_file)
+    # Service Creds
+    MONGO_URI = data['MONGO_URI']
+except IOError as err:
+    print "[error] "+err.message
+
+client = pymongo.MongoClient(MONGO_URI)
+db = client.choretracker    
 
 def create_acc(name):
     """creating account"""
@@ -59,8 +68,11 @@ def add_transaction(fname,transaction_amnt,chore_type):
 
 def return_balance(fname):
     req = db.user.find({'lname':fname}).sort('chore_date', -1)
-    bal_savings = float(req[0]['end_savings'])
-    bal_balance = float(req[0]['end_balance'])
+    bal_savings = None
+    bal_balance = None
+    for r in req:
+        bal_savings = float(r['end_savings'])
+        bal_balance = float(r['end_balance'])
     return {'credit' : bal_balance, 'savings': bal_savings}
 
 
@@ -70,17 +82,7 @@ fnames = ['Etienne','Angel','Pullova','Etienne','Pullova','Angel','Angel','Etien
 trans_amnts = [61.49, 73.76, 20.76, 70.1, 30.29, 60.2, 63.75, 57.69, 88.34, 36.88, 15.02, 30.24, 71.84]
 chr_type = ['vaccuuming','trash','cleaning','vaccuuming','trash','cleaning','vaccuuming','trash','cleaning','lawn moaning']
 
-n=0
-for i in fnames:
-    print i
-    add_transaction(i,trans_amnts[n],chr_type[n])
-    n+=1
-
-
-
-
-
-
+print return_balance('Rivera')
 
 
     #db.user.insert({})
