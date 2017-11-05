@@ -72,7 +72,7 @@ def add_transaction(fname,transaction_amnt,chore_type):
     return data
 
 def return_balance(fname):
-    req = db.user.find({'lname':fname})limit(1).sort('chore_date', -1)
+    req = db.user.find({'lname':fname}).limit(1).sort('chore_date', -1)
     bal_savings = None
     bal_balance = None
     for r in req:
