@@ -1,0 +1,20 @@
+CompleteChore I took out the trash
+
+AskForWishList Tell me my wishlist 
+AskForWishList Give me my wishlist
+AskForWishList Tell me the items on my wishlist
+AskForWishList Tell me my wishlist items
+AskForWishList Tell me my wish list items
+
+OrderWishlistItem Order my wishlist item now
+OrderWishlistItem Order my wishlist item
+OrderWishlistItem Order my item now
+OrderWishlistItem Order my item
+
+
+AMAZON.StopIntent stop
+AMAZON.StopIntent off
+AMAZON.StopIntent shut up
+AMAZON.StartOverIntent start over
+AMAZON.StartOverIntent restart
+AMAZON.StartOverIntent start again

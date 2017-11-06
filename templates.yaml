@@ -1,0 +1,44 @@
+welcome: |
+    Hello I am the Capital One Chore Tracker
+    How can I assist you today?
+    You say things like Say Tell me my wish list items to hear the items on your list
+
+welcome_reprompt: please say tell me my wishlist or tell me my balance
+
+bye: Goodbye
+
+card_title: Session
+
+nay_get_wishlist: |
+    You have one item on your Capital One Wishlist, the item is {{item_name}} and the price is {{item_price}}.
+    You currentely have {{end_balance}} in your Wishlist account. Unfortunately you do not have enough credits to purchase this item.
+    You must complete at least one or more chores to earn enough credits to order your item. Now go out and earn your {{item_name}}.
+
+yay_get_wishlist: |
+    Yay you now have enought credits in your Capital One Wishlist account and you can now order your {{item_name}} item.
+    The price is {{item_price}} and will be deducted from your Capital One Wishlist account. 
+    Say Order my wishlist item now or stop to cancel and order at a later date.
+
+complete_chore: |
+    You have earned {{chore_amount}} for completing your chore. 
+    {{amount}} will be credited to your Capital One Whishlist Spending account and {{amount}} will be deposited into your Capital One Savings account.
+    Say Tell me my wish list items or stop to end this session.
+
+yay_order_wishlist_item: |
+    Congratulations your hard work has paid off! Your Capital One Wish List item {{item_name}} has been ordered from Amazon Prime order Number 1250-5678 and should arrive in 2 Days.
+    The {{item_name}} price of {{item_price}} has been deducted from your Capital One Wishlist Account.
+    You now have a balance of {{end_balance}} in your Capital One Wishlist Account.
+    Keep up the good work & continue doing your chores!  Love Mom & Dad.
+
+nay_order_wishlist_item: |
+    You do not have enough Credits in your Capital One Wishlist Account. Say Tell me my wish list items to hear your account balance and details.
+
+help_template: Here are the details for step {{step}}. {{stepMessage}}
+
+chore_completed: |
+    {{stepMessage}}. If you want to move to the next step, Say Next.
+
+bye_template: Goodbye
+
+trans_complete: |
+    Complete

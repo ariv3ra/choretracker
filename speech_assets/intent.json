@@ -1,0 +1,48 @@
+{
+ "intents": [
+   {
+			"intent": "AMAZON.HelpIntent",
+			"slots": []
+		},
+		{
+			"intent": "AMAZON.StopIntent",
+			"slots": []
+		},
+		{
+			"intent": "AMAZON.CancelIntent",
+			"slots": []
+		},
+		{
+			"intent": "AMAZON.StartOverIntent",
+			"slots": []
+		},
+   		{
+   			"intent":"CompleteChore",
+   			"slots": []
+   		},
+		{
+   			"intent":"AskForWishList",
+   			"slots": []
+   		},
+		{
+		   "intent":"OrderWishlistItem",
+		   "slots":[]
+		},		   
+   		{
+   			"intent":"NextStepIntent",
+   			"slots": []
+   		},
+   		{
+   			"intent": "InstructionIntent",
+	    	"slots": [
+	    	{"name":"Step", "type":"AMAZON.NUMBER"}
+	    	]
+   		}
+   		{
+			"intent": "HelpIntent",
+			"slots": [
+			{"name":"Step", "type":"AMAZON.NUMBER"}
+			]
+		},
+ ]
+}	
